@@ -1,0 +1,155 @@
+.navbar {
+  color: white;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.welcome {
+  white-space: nowrap;
+  display: flex;
+  margin-right: 1rem;
+  color: white;
+  align-items: center;
+  text-decoration: none;
+}
+
+.welcome:hover {
+  color: #f1a0a0;
+}
+
+.linkContainer {
+  margin: 0 10px;
+}
+
+.link {
+  position: relative;
+  display: block;
+  color: white;
+  padding: 0.5rem;
+  text-decoration: none;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+}
+
+.link::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  transform: rotate(45deg) translate(-70%, 80%);
+  background-image: linear-gradient(0deg, transparent, #ffffffaa, transparent);
+  transition-delay: 0.2s;
+  transition: all 0.2s ease-in-out;
+}
+
+.link:hover {
+  border-radius: 1rem;
+  background-color: #f1a0a0;
+  color: black;
+}
+
+.link:hover::before {
+  transform: rotate(60deg) translate(-60%, -85%);
+  background-image: transparent;
+  border-radius: 1rem;
+  pointer-events: none;
+}
+
+.icon {
+  margin-right: 0.3rem;
+}
+
+.profileImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  overflow: hidden;
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.profileImage img {
+  min-height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.profileImage:hover {
+  border-radius: 3px;
+}
+
+.hamburger {
+  display: none;
+  height: 2.5rem;
+  width: 2.5rem;
+  padding: 0;
+  background-color: white;
+  color: #222222;
+  border-radius: 50% !important;
+  margin: 0 !important;
+}
+
+.hamburger span {
+  text-align: center;
+  margin: 0 !important;
+}
+
+.linksOpen {
+  composes: links;
+}
+
+@media screen and (max-width: 998px) {
+  .navbar {
+    padding: 0;
+  }
+
+  .linksOpen {
+    display: flex !important;
+    list-style: none;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    padding: 1rem;
+    background-color: #000000df;
+    top: 75px;
+    right: 0;
+    z-index: 5;
+  }
+
+  .linksOpen a {
+    font-size: 1.5rem;
+  }
+
+  .hamburger {
+    display: block;
+    margin-right: 1rem;
+    cursor: pointer;
+  }
+
+  .links {
+    display: none;
+  }
+
+  .link {
+    padding: 0.5rem 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .welcome h2 {
+    display: none;
+  }
+}

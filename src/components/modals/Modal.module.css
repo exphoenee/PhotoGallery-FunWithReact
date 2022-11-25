@@ -1,0 +1,108 @@
+.cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.modal {
+  position: fixed;
+  padding: 2rem;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.25);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 15;
+  border-radius: 2rem;
+  max-width: 95%;
+}
+
+.body {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.xs {
+  composes: modal;
+  width: 20%;
+  min-width: 350px;
+}
+
+.sm {
+  composes: modal;
+  width: 30%;
+  min-width: 450px;
+}
+
+.md {
+  composes: modal;
+  width: 50%;
+  min-width: 600px;
+}
+
+.lg {
+  composes: modal;
+  width: 60%;
+  min-width: 700px;
+}
+
+.xl {
+  composes: modal;
+  width: 80%;
+  min-width: 800px;
+}
+
+.full {
+  composes: modal;
+  width: 95%;
+  min-width: 95%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 1rem 0;
+}
+
+.header h2 {
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0 3rem 0 0;
+}
+
+.header button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .xs,
+  .sm,
+  .md,
+  .lg,
+  .xl,
+  .full {
+    width: 95%;
+    min-width: 95% !important;
+    max-width: 95% !important;
+  }
+
+  .modal {
+    position: fixed;
+    padding: 1rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 0.5rem;
+  }
+}

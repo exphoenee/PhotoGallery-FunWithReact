@@ -1,0 +1,61 @@
+.button {
+  font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  border: 0;
+  border-radius: 1em;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+  color: #222;
+  font-size: 16px;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s linear;
+}
+
+.circular {
+  border: 0;
+  aspect-ratio: 1/1;
+  padding: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #22222288 !important;
+  transition: all 0.2s linear;
+}
+
+.circular:hover {
+  color: #222 !important;
+  padding: 0 !important;
+}
+
+.background {
+  box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.2);
+  background-color: #f1a0a044;
+}
+
+.noBackground {
+  background-color: transparent;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+.noBackground:hover {
+  background-color: transparent;
+  box-shadow: none !important;
+}
+
+.background:hover {
+  background-color: #f1a0a4;
+}
+
+button:disabled {
+  background-color: #f1a0a033;
+  cursor: not-allowed;
+}
+button:disabled:hover {
+  background-color: #f1a0a011;
+  cursor: not-allowed;
+}

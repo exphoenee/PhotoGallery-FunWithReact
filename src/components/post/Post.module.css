@@ -1,0 +1,57 @@
+.postSection {
+  position: relative;
+}
+
+.onRight {
+  text-align: right;
+}
+
+.onCenter {
+  text-align: center;
+}
+
+.title {
+  composes: onCenter;
+  margin-bottom: 1rem;
+}
+
+.postContainer {
+  width: 600px;
+  padding: 1rem;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.content {
+  font-size: 1.1rem;
+  margin: 1rem auto;
+}
+
+.infoWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.owner {
+  composes: onRight;
+  margin: 0;
+}
+
+.date {
+  composes: onRight;
+  margin: 0;
+  font-size: 0.75rem;
+}
+
+@media screen and (max-width: 768px) {
+  .infoContainer {
+    width: 100%;
+  }
+}

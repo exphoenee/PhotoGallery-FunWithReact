@@ -1,0 +1,24 @@
+.container {
+  margin: 5rem auto;
+  max-width: 600px;
+  padding: 0 20px;
+}
+
+.title {
+  color: #222;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.back {
+  display: block;
+  color: #222;
+  text-align: center;
+  text-decoration: none;
+  margin: 0 auto;
+  font-size: 1.5rem;
+}
+
+.back:hover {
+  color: #a0a0f0;
+}

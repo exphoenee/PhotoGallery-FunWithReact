@@ -1,0 +1,27 @@
+.addComment {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 10px 0px #00000044;
+  background-color: #eeeeee88;
+  margin: 1rem auto;
+}
+
+.addComment textarea {
+  border-radius: 1rem 1rem 0 0;
+  outline: none;
+  resize: vertical;
+  border: 0;
+  padding: 1rem;
+  font-size: 1.3rem;
+  background-color: #eeeeee88;
+  box-shadow: inset 0px 0px 2px 0px #00000044;
+}
+
+.addComment button {
+  border-radius: 0 0 1rem 1rem;
+  border: 0;
+  padding: 1rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+}

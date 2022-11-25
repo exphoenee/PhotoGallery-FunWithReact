@@ -1,0 +1,36 @@
+.errorContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: rows;
+  justify-content: space-between;
+  align-items: flex-start;
+  bottom: 0%;
+  left: 0%;
+  transform: translate(0%, 75%);
+  padding: 0.5rem;
+  width: 100%;
+  background-color: #f1a0a4aa;
+  z-index: 2;
+  border-radius: 0.5rem;
+}
+
+.errorContainer p {
+  margin: 0;
+  color: #000;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.errorContainer:before {
+  position: absolute;
+  top: 0;
+  left: 30%;
+  transform: translate(-50%, -100%);
+  z-index: 1;
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border: 0.75rem solid transparent;
+  border-bottom-color: #f1a0a4aa;
+}

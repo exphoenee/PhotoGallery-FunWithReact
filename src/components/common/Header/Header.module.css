@@ -1,0 +1,40 @@
+.header {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+  padding: 1rem;
+  color: white;
+  text-align: center;
+  background-color: #000000df;
+}
+
+.spacer {
+  height: 75px;
+}
+
+.title {
+  width: auto;
+  white-space: nowrap;
+}
+
+.title {
+  display: inline-block;
+  text-align: left;
+  white-space: nowrap;
+  color: white;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.title:hover {
+  color: #f1a0a0;
+}
+
+.headerIcon {
+  margin-right: 1rem;
+}

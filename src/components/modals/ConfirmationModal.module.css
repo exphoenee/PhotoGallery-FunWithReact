@@ -1,0 +1,6 @@
+.confirmModalFooter {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1rem;
+  gap: 1rem;
+}

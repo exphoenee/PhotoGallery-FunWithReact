@@ -1,0 +1,74 @@
+.errorPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f5f5f5;
+}
+
+.errorPage img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 1rem;
+  box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.8);
+}
+
+.errorPage h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.errorPage a {
+  margin-top: 2rem;
+  color: #000;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 700;
+  transition: all 0.3s ease-in-out;
+}
+
+.errorPage a:hover {
+  color: #f0a0a0;
+}
+
+.errorPage h1 span {
+  display: inline-block;
+  transform-origin: center center;
+
+  -webkit-animation: flip 1s linear infinite;
+  animation: flip 1s linear infinite;
+}
+
+@-webkit-keyframes flip {
+  0% {
+    color: red;
+    transform: rotateY(0);
+  }
+  50% {
+    color: black;
+    transform: rotateY(-180deg);
+  }
+  100% {
+    color: red;
+    transform: rotateY(0);
+  }
+}
+
+@keyframes flip {
+  0% {
+    color: red;
+    transform: rotateY(0);
+  }
+  50% {
+    color: black;
+    transform: rotateY(-180deg);
+  }
+  100% {
+    color: red;
+    transform: rotateY(0);
+  }
+}

@@ -1,0 +1,82 @@
+.imageWrapper {
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem;
+  margin: 0 auto;
+  aspect-ratio: 1/1;
+  transition: all 0.3s ease-in-out;
+}
+
+.imageWrapper:hover .image {
+  width: 100%;
+}
+
+.xs {
+  composes: imageWrapper;
+  width: 100px;
+}
+
+.sm {
+  composes: imageWrapper;
+  width: 200px;
+}
+
+.md {
+  composes: imageWrapper;
+  width: 300px;
+}
+
+.lg {
+  composes: imageWrapper;
+  width: 400px;
+}
+
+.xl {
+  composes: imageWrapper;
+  width: 500px;
+}
+
+.xxl {
+  composes: imageWrapper;
+  width: 600px;
+}
+
+.info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f1f1f100;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  transform: translateY(100%);
+  transition: all 0.3s ease-in-out;
+}
+
+.imageWrapper:hover .info {
+  transform: translateY(0);
+  background-color: #f1f1f164;
+}
+
+.image {
+  -o-object-fit: contain;
+  object-fit: contain;
+  transform-origin: center center;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  transition: all 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+  .imageWrapper {
+    margin: 0;
+  }
+}

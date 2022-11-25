@@ -1,0 +1,80 @@
+.floatingButton {
+  z-index: 1;
+  top: 8rem;
+  left: 3rem;
+  position: fixed;
+  display: flex;
+  cursor: pointer;
+  justify-content: start;
+  align-items: center;
+  padding: 0.25em;
+  width: 4rem;
+  max-width: 4rem;
+  height: 4rem;
+  border-radius: 2rem;
+  background-color: #f1a0a044;
+  color: white;
+  border: 0;
+  outline: none;
+  font-size: 3rem;
+  box-shadow: 0 0 10px rgba(41, 28, 28, 0.2);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.floatingButton:hover {
+  border-radius: 2rem 0.5rem 0.5rem 2rem;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  width: 100%;
+  background-color: #f1a0a0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.label {
+  font-size: 2rem;
+  white-space: nowrap;
+  color: transparent;
+  width: 0;
+  margin-left: 2rem;
+  transition: all 0.4s ease-in-out;
+  transition-delay: 0.2s;
+}
+
+.floatingButton:hover .label {
+  color: white;
+  width: 100%;
+  margin-left: 2rem;
+}
+
+@media screen and (max-width: 998px) {
+  .floatingButton {
+    position: fixed;
+    background-color: #222;
+    top: initial;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    min-width: 100%;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+  .label {
+    color: white;
+    margin-left: 1rem;
+    width: auto;
+  }
+  .floatingButton:hover .label {
+    width: auto;
+    margin-left: 1rem;
+  }
+  .floatingButton:hover {
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+}

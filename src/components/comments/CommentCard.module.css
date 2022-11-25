@@ -1,0 +1,45 @@
+.commentCard {
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 10px 0px #00000044;
+  background-color: #eeeeee88;
+  margin: 1rem auto;
+  position: relative;
+}
+
+.innerContainer {
+  position: relative;
+}
+
+.innerContainer p {
+  margin: 0;
+}
+
+.onRight {
+  text-align: right;
+}
+
+.onCenter {
+  text-align: center;
+}
+
+.commentFooter {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.commentInfo {
+  display: flex;
+  flex: 1;
+  justify-content: end;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.commentDate {
+  composes: onRight;
+  font-size: 0.75rem;
+  display: block;
+}

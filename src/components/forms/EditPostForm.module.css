@@ -1,0 +1,62 @@
+.splitPanel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.leftPanel {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rightPanel {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.imagePreview {
+  -o-object-fit: contain;
+  object-fit: contain;
+  max-width: 600px;
+  max-height: 400px;
+}
+
+.contentTextarea {
+  width: 100%;
+  font-size: 1rem;
+  box-shadow: 1px 2px 5px 0 rgba(0, 0, 0, 0.2);
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 12px 20px;
+  max-height: 25rem;
+}
+
+.imageSelectBtn {
+  margin: 0.75rem auto 2rem auto;
+}
+
+.submitBtn {
+  margin: 2rem auto 0.75rem auto;
+}
+
+@media (max-width: 1580px) {
+  .splitPanel {
+    flex-direction: column-reverse;
+  }
+
+  .leftPanel {
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .rightPanel {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}

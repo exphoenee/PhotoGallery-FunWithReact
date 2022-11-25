@@ -1,0 +1,39 @@
+.container {
+  margin: 5rem auto;
+  width: 75%;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.decoratedSection {
+  composes: section;
+  padding: 3rem;
+  border-radius: 2rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.decoratedSection::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1rem;
+  bottom: 0;
+  background-color: #f1a0a044;
+  z-index: -1;
+  transition: all ease-in-out 0.5s;
+}
+
+.decoratedSection:hover::after {
+  background-color: #f1a0a0;
+}
+
+.title {
+  color: #222;
+  font-size: 2rem;
+  text-align: center;
+}

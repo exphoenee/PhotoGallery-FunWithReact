@@ -1,0 +1,41 @@
+.buttonContainer {
+  box-shadow: inset 1px 2px 5px rgba(0, 0, 0, 0.4),
+    1px 2px 5px rgba(0, 0, 0, 0.4);
+  width: 6rem;
+  height: 2rem;
+  border-radius: 1rem;
+  background-color: #22222222;
+}
+
+.iconButton {
+  width: 3rem;
+  height: 2rem;
+  font-size: 1rem;
+  outline: none;
+  border: 0;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background-color: white;
+  color: #222;
+}
+
+.showMore {
+  composes: iconButton;
+}
+
+.showLess {
+  composes: iconButton;
+}
+
+.iconButton:hover {
+  background-color: #f1a0a0;
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+.iconButton:disabled {
+  background-color: #00000022;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  cursor: not-allowed;
+}

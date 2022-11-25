@@ -1,0 +1,67 @@
+.commentEdit {
+  position: absolute;
+  border: 0;
+  background-color: #eeeeee88;
+  border-radius: 50%;
+  cursor: pointer;
+  border-radius: 1rem;
+  border-radius: 1rem;
+  box-shadow: inset 1px 2px 5px 0px #00000044;
+  opacity: 0.2;
+  transition: opacity 0.2s;
+}
+
+.commentEdit:hover {
+  opacity: 1;
+}
+
+.topRight {
+  composes: commentEdit;
+  top: 0rem;
+  right: 0rem;
+}
+.topLeft {
+  composes: commentEdit;
+  bottom: 0rem;
+  top: 0rem;
+}
+.bottomLeft {
+  composes: commentEdit;
+  bottom: 0rem;
+  left: 0rem;
+}
+.bottomRight {
+  composes: commentEdit;
+  bottom: 0rem;
+  right: 0rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  box-shadow: 1px 2px 5px 0px #00000044;
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid #00000022;
+  background: white;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.deleteBtn {
+  composes: btn;
+  color: red;
+}
+.deleteBtn:hover {
+  background-color: #ff000044;
+  box-shadow: inset 1px 2px 5px 0px #00000044;
+}
+
+.editBtn {
+  composes: btn;
+  color: blue;
+}
+.editBtn:hover {
+  background-color: #0000ff44;
+  box-shadow: inset 1px 2px 5px 0px #00000044;
+}
