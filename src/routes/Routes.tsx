@@ -1,6 +1,7 @@
 import React from "react";
 import {
   createBrowserRouter,
+  createHashRouter,
   createRoutesFromElements,
   Route,
   redirect,
@@ -66,10 +67,9 @@ export const redirectWithoutAdmin = () => {
 };
 
 /* TODO: not bad, but i would like to map form the sitemap object */
-const Routes = createBrowserRouter(
-  //errorElement={<ErrorPage />}
+const Routes = createHashRouter(
   createRoutesFromElements(
-    <Route path="/" element={<PageWithHeader />}>
+    <Route path="/" element={<PageWithHeader />} errorElement={<ErrorPage />}>
       <Route index element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/login" element={<Login />} loader={redirectWithUser} />
