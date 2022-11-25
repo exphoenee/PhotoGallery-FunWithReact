@@ -1,46 +1,34 @@
-# Getting Started with Create React App
+# Fun with React!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## The goal of the project
 
-## Available Scripts
+I made this little playgroud to learn React and to have fun with it. I'm not a React expert, so I'm sure there are better ways to do things. But I'm learning and I'm having fun!
+The main goal was to learn the simplicity and reusability of React components. I also wanted to learn how to use the React Router to create a single page application.
 
-In the project directory, you can run:
+## How to run
 
-### `npm start`
+```
+npm install
+npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## How it works?
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+There is 2 users in the system:
 
-### `npm test`
+- User: `user` Password: `user`
+- Admin: username: `admin`, password: `admin`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You can register new users, but you can't register new admins.
 
-### `npm run build`
+## What can I do?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Login
+- Register
+- Adding new photos, to the gallery
+- Adding new posts
+- Adding new comments to the posts
+- Liking and disliking the posts
+- Removing and updating the posts and comments (only by the author)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+When you login, you can see the list of users. You can click on a user to see his details. You can also edit a user. If you are an admin, you can also delete a user.
