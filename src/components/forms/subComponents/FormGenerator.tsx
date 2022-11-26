@@ -82,11 +82,25 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
     };
   }, {});
 
-  const validateForm = (formState: any) => {
+  const formIsMessy = (formState: any) => {
     const issue = Object.keys(formState.error).findIndex(
       (field) => formState.error[field] !== ""
     );
     formState.messy = issue >= 0;
+  };
+
+  const sameFields = (formFields: any, formState: any) => {
+    const sameFields = formFields.filter(
+      (field: any) => field.validation.sameAs
+    );
+
+    const field1 = sameFields[0].name;
+    const field2 = sameFields[0].validation.sameAs;
+
+    if (formState.value[field1] !== formState.value[field2]) {
+      formState.error[field1] = "Fields must be the same";
+      //formState.error[field2] = "Fields must be the same";
+    }
   };
 
   const getFormState = (formState: object, state: string) => {
@@ -96,7 +110,8 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
   };
 
   useEffect(() => {
-    validateForm(formState);
+    formIsMessy(formState);
+    sameFields(formFields, formState);
     setFormData(formState);
   }, [
     ...getFormState(formState, "value"),
