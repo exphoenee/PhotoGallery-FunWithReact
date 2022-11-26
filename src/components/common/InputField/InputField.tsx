@@ -136,6 +136,7 @@ const InputField: React.FC<InputFieldProps> = ({
     validation?: validationRuleType
   ) => {
     const issue = validate(e, type, validation);
+    console.log(issue);
     setError(issue);
   };
 
