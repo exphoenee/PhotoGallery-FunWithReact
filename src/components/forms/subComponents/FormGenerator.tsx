@@ -30,7 +30,7 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
   handleSubmit,
   setFormData,
   formFields,
-  withoutSubmit = true,
+  withoutSubmit = false,
   submitButtonIcon = <AcceptIcon />,
   submitButtonLabel = "Send",
   submitButtonStyle = styles.singUpBtn,
@@ -87,12 +87,22 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
       (field) => formState.error[field] !== ""
     );
     console.log(formState, issue, issue >= 0);
+    formState.messy = issue >= 0;
+  };
+
+  const getFormState = (formState: object, state: string) => {
+    return Object.keys(formState[state as keyof object]).map(
+      (field) => formState[state as keyof object][field]
+    );
   };
 
   useEffect(() => {
     validateForm(formState);
     setFormData(formState);
-  }, [...Object.keys(formState.value).map((value) => formState.value[value])]);
+  }, [
+    ...getFormState(formState, "value"),
+    ...getFormState(formState, "error"),
+  ]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -105,7 +115,7 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
         />
       </div>
       {afterFormFields && afterFormFields}
-      {withoutSubmit && (
+      {!withoutSubmit && (
         <Button
           type="submit"
           className={submitButtonStyle}
