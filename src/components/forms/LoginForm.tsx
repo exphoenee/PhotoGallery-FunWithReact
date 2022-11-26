@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 /* components */
 import { LoginIcon } from "../icons";
 import loginFormFields from "./formStructures/loginFormFields";
+import { Popup } from "../common";
 
 /* action */
 import { login } from "../../features/loginUserSlice";
@@ -21,6 +22,7 @@ interface LoginFormType {
 
 const LoginForm: React.FC<LoginFormType> = ({ closeModal }) => {
   const [formData, setFormData] = useState<any>();
+  const [formError, setFormError] = useState<string | null | undefined>(null);
 
   const dispatch = useDispatch();
   const redirect = useNavigate();
@@ -44,19 +46,22 @@ const LoginForm: React.FC<LoginFormType> = ({ closeModal }) => {
         closeModal && closeModal();
         redirect("/gallery");
       } else {
-        // setError("Username or password is incorrect!");
+        setFormError("Username or password is incorrect!");
       }
     }
   };
 
   return (
-    <FormGenerator
-      setFormData={setFormData}
-      formFields={loginFormFields}
-      handleSubmit={handleLogin}
-      submitButtonIcon={<LoginIcon />}
-      submitButtonLabel="Login"
-    />
+    <>
+      <FormGenerator
+        setFormData={setFormData}
+        formFields={loginFormFields}
+        handleSubmit={handleLogin}
+        submitButtonIcon={<LoginIcon />}
+        submitButtonLabel="Login"
+      />
+      <Popup error={formError} setError={setFormError} errorTimeout={5000} />
+    </>
   );
 };
 export default LoginForm;
