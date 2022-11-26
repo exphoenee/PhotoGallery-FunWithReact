@@ -56,7 +56,6 @@ const LoginForm: React.FC<LoginFormType> = ({ closeModal }) => {
       handleSubmit={handleLogin}
       submitButtonIcon={<LoginIcon />}
       submitButtonLabel="Login"
-      //submitButtonStyle={styles.signinButton}
     />
   );
 };
