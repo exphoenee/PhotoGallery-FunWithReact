@@ -86,7 +86,6 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
     const issue = Object.keys(formState.error).findIndex(
       (field) => formState.error[field] !== ""
     );
-    console.log(formState, issue, issue >= 0);
     formState.messy = issue >= 0;
   };
 
