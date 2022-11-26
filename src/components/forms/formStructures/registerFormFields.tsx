@@ -25,6 +25,7 @@ const registerFormFields: (formFieldType | formFieldType[])[] = [
     icon: <PasswordIcon />,
     validation: {
       required: true,
+      sameAs: "passwordAgain",
     },
   },
   {
