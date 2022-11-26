@@ -90,16 +90,16 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
   };
 
   const sameFields = (formFields: any, formState: any) => {
-    const sameFields = formFields.filter(
-      (field: any) => field.validation.sameAs
-    );
+    const sameFields = formFields.find((field: any) => field.validation.sameAs);
 
-    const field1 = sameFields[0].name;
-    const field2 = sameFields[0].validation.sameAs;
+    if (sameFields) {
+      const field1 = sameFields[0].name;
+      const field2 = sameFields[0].validation.sameAs;
 
-    if (formState.value[field1] !== formState.value[field2]) {
-      formState.error[field1] = "Fields must be the same";
-      //formState.error[field2] = "Fields must be the same";
+      if (formState.value[field1] !== formState.value[field2]) {
+        formState.error[field1] = "Fields must be the same";
+        //formState.error[field2] = "Fields must be the same";
+      }
     }
   };
 
