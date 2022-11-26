@@ -82,59 +82,15 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
     };
   }, {});
 
-  const validateForm = (formFields: any, formState: any, fieldHandler: any) => {
-    const validationRules = formFields.reduce((acc: any, field: any) => {
-      return {
-        ...acc,
-        [field.name as string]: {
-          ...field.validation,
-        },
-      };
-    }, {});
-
-    const fieldNames = Object.keys(formState.value).map((input) => input);
-
-    const results = fieldNames.map((field) => {
-      const value = formState.value[field];
-      const validation = validationRules[field];
-      const touched = formState.touched[field];
-      const error = formState.error[field];
-
-      console.log({ field, value, validation, touched, error });
-
-      if (!touched) return;
-
-      if (validation.required && value.trim() === "") {
-        fieldHandler[field].setError("Required");
-        return;
-      }
-
-      if (validation.minLength && value.length < validation.minLength) {
-        fieldHandler[field].setError(`Min length is ${validation.minLength}`);
-        return;
-      }
-
-      if (validation.maxLength && value.length > validation.maxLength) {
-        fieldHandler[field].setError(`Max length is ${validation.maxLength}`);
-        return;
-      }
-
-      if (validation.isEmail && !value.includes("@")) {
-        fieldHandler[field].setError("Invalid email");
-        return;
-      }
-
-      if (validation.isNumeric && isNaN(Number(value))) {
-        fieldHandler[field].setError("Invalid number");
-        return;
-      }
-
-      fieldHandler[field].setError("");
-    });
+  const validateForm = (formState: any) => {
+    const issue = Object.keys(formState.error).findIndex(
+      (field) => formState.error[field] !== ""
+    );
+    console.log(formState, issue, issue >= 0);
   };
 
   useEffect(() => {
-    //validateForm(formFields, formState, fieldHandler);
+    validateForm(formState);
     setFormData(formState);
   }, [...Object.keys(formState.value).map((value) => formState.value[value])]);
 
