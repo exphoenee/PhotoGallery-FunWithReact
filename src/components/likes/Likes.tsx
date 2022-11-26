@@ -68,20 +68,14 @@ export const Likes: React.FC<LikesProps> = ({ likedThing }) => {
           onClick={(e) => handleLike(e, "like")}
           data-count={likeCount}
         >
-          <LikeIcon
-            color={likeCount === 0 ? "lightgrey" : "#3333ffaa"}
-            size="2x"
-          />
+          <LikeIcon color={likeCount === 0 ? "lightgrey" : "#3333ffaa"} />
         </div>
         <div
           className={styles.like}
           onClick={(e) => handleLike(e, "dislike")}
           data-count={dislikeCount}
         >
-          <DislikeIcon
-            color={dislikeCount === 0 ? "lightgrey" : "#ff3333aa"}
-            size="2x"
-          />
+          <DislikeIcon color={dislikeCount === 0 ? "lightgrey" : "#ff3333aa"} />
         </div>
       </div>
     </div>
