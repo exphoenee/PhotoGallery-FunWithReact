@@ -9,6 +9,7 @@ interface formFieldType {
   disabled?: boolean;
   id?: string;
   newPassword?: boolean;
+
   value?: string;
   rows?: number;
   cols?: number;
