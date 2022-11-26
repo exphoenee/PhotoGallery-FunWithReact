@@ -35,8 +35,8 @@ const LoginForm: React.FC<LoginFormType> = ({ closeModal }) => {
       /* TODO: this checking happends on the backend, I didn't has better idea*/
       const user = users.find(
         (user: any) =>
-          user.username === formData.username &&
-          user.password === formData.password
+          user.username === formData.value.username &&
+          user.password === formData.value.password
       );
 
       if (user) {
