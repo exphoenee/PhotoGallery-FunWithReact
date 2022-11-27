@@ -89,10 +89,10 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
     formState.messy = issue >= 0;
   };
 
-  const sameFields = (formFields: any, formState: any) => {
-    const sameFields = formFields.filter(
-      (field: any) => field.validation.sameAs
-    );
+  const checkSameFields = (formFields: any, formState: any) => {
+    const sameFields = formFields
+      .flat()
+      .filter((field: any) => field?.validation?.sameAs);
 
     if (sameFields) {
       const errors = sameFields.some((field: any) => {
@@ -121,7 +121,7 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
 
   useEffect(() => {
     formIsMessy(formState);
-    sameFields(formFields, formState);
+    checkSameFields(formFields, formState);
     setFormData(formState);
   }, [
     ...getFormState(formState, "value"),
