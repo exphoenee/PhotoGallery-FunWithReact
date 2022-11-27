@@ -10,13 +10,17 @@ import styles from "./PageWithHeader.module.css";
 
 const PageWithHeader: React.FC = () => {
   return (
-    <div className={styles.page}>
+    <>
       <Header />
-      <main className={styles.main}>
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
+      <div className={styles.page}>
+        <div className={styles.scrollable}>
+          <main className={styles.main}>
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
+      </div>
+    </>
   );
 };
 
