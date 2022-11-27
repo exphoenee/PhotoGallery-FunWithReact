@@ -14,7 +14,7 @@ const PageWithHeader: React.FC = () => {
       <Header />
       <div className={styles.page}>
         <div className={styles.scrollable}>
-          <main className={styles.main}>
+          <main>
             <Outlet />
           </main>
           <Footer />
