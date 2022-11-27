@@ -81,7 +81,14 @@ const NavBar: React.FC<NavBarProps> = () => {
               item.menu
             ) {
               return (
-                <li key={index} className={styles.linkContainer}>
+                <li
+                  key={index}
+                  className={
+                    item.path !== location.pathname
+                      ? styles.linkContainer
+                      : styles.selectedLinkContainer
+                  }
+                >
                   <Link
                     to={item.path}
                     onClick={(e) => {
