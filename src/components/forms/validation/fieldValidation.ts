@@ -1,4 +1,4 @@
-import { inputFieldType } from "../../common";
+import { inputFieldType } from "../../common/InputField";
 import validationRuleType from "../types/validationRuleType";
 
 export default function fieldValidation(
