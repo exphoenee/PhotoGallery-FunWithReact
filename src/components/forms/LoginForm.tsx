@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 /* components */
 import { LoginIcon } from "../icons";
 import loginFormFields from "./formStructures/loginFormFields";
-import { Popup } from "../common";
+import Popup from "../common/Popup";
 
 /* action */
 import { login } from "../../features/loginUserSlice";
