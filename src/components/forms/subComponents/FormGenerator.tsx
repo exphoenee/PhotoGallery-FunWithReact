@@ -33,7 +33,7 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
   withoutSubmit = false,
   submitButtonIcon = <AcceptIcon />,
   submitButtonLabel = "Send",
-  submitButtonStyle = styles.singUpBtn,
+  submitButtonStyle = styles.submitButton,
   beforeFormFields,
   afterFormFields,
 }) => {
@@ -90,15 +90,25 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
   };
 
   const sameFields = (formFields: any, formState: any) => {
-    const sameFields = formFields.find((field: any) => field.validation.sameAs);
+    const sameFields = formFields.filter(
+      (field: any) => field.validation.sameAs
+    );
 
     if (sameFields) {
-      const field1 = sameFields[0].name;
-      const field2 = sameFields[0].validation.sameAs;
-
-      if (formState.value[field1] !== formState.value[field2]) {
-        formState.error[field1] = "Fields must be the same";
-        //formState.error[field2] = "Fields must be the same";
+      const errors = sameFields.some((field: any) => {
+        if (
+          formState.value[field.name] !==
+          formState.value[field.validation.sameAs]
+        ) {
+          formState.error[field.name] = "Fields must be the same";
+          return true;
+          //formState.error[field2] = "Fields must be the same";
+        }
+        return false;
+      });
+      console.log(errors);
+      if (errors.length > 0) {
+        formState.messy = true;
       }
     }
   };
