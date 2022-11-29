@@ -100,7 +100,7 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
           formState.value[field.name] !==
           formState.value[field.validation.sameAs]
         ) {
-          formState.error[field.name] = "Fields must be the same";
+          formState.error[field.name] = `Both ${field.name}s must be same.`;
           return true;
         }
         return false;
