@@ -12,14 +12,14 @@ const PageWithHeader: React.FC = () => {
   return (
     <>
       <Header />
-      <div className={styles.page}>
+      <main className={styles.page}>
         <div className={styles.scrollable}>
-          <main>
+          <div className={styles.content}>
             <Outlet />
-          </main>
+          </div>
           <Footer />
         </div>
-      </div>
+      </main>
     </>
   );
 };
