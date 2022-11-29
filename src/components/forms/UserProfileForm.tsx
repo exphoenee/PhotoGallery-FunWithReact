@@ -55,6 +55,8 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
   const currentUser = getUser();
 
   const [formData, setFormData] = useState<any>();
+  const [setters, setSetters] = useState<any>();
+
   const [edit, setEdit] = useState<boolean>(false);
   const [confirmIsOpen, setConfirmIsOpen] = useState<boolean>(false);
   const [passwordChangeIsOpen, setPasswordChangeIsOpen] =
@@ -85,13 +87,14 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
   ) => {
     e.preventDefault();
     setEdit(false);
-    setFormData((prevData: any) => {
-      console.log(prevData);
-      return {
-        ...prevData,
-        value: user,
-      };
-    });
+    console.log(setters);
+    // setFormData((prevData: any) => {
+    //   console.log(prevData);
+    //   return {
+    //     ...prevData,
+    //     value: user,
+    //   };
+    // });
   };
 
   /* TODO: here would be nice to have a confirmation modal */
@@ -148,6 +151,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
         formFields={fields}
         handleSubmit={handleSubmit}
         setFormData={setFormData}
+        setSetters={setSetters}
         withoutSubmit
         beforeFormFields={
           <>
