@@ -1,19 +1,25 @@
 import { EmailIcon, NameIcon, UserIcon } from "../../icons";
 
+import getUser from "../../../hooks/useUser";
+
 import formFieldType from "../types/formFieldType";
 import { inputFieldType } from "../../common/InputField";
+
+const user = getUser();
 
 const userProfileFromFields: (formFieldType | formFieldType[])[] = [
   [
     {
       label: "First name",
       name: "firstName",
+      value: user?.firstName,
       type: inputFieldType.text,
       icon: <NameIcon />,
     },
     {
       label: "Last name",
       name: "lastName",
+      value: user?.lastName,
       type: inputFieldType.text,
       icon: <NameIcon />,
       validation: {
@@ -25,6 +31,7 @@ const userProfileFromFields: (formFieldType | formFieldType[])[] = [
   {
     label: "Username",
     name: "username",
+    value: user?.username,
     type: inputFieldType.text,
     icon: <UserIcon />,
     validation: {
@@ -35,6 +42,7 @@ const userProfileFromFields: (formFieldType | formFieldType[])[] = [
   {
     label: "Email",
     name: "email",
+    value: user?.email,
     type: inputFieldType.email,
     icon: <EmailIcon />,
     validation: {
@@ -45,6 +53,7 @@ const userProfileFromFields: (formFieldType | formFieldType[])[] = [
   {
     label: "Role",
     name: "role",
+    value: user?.role,
     type: inputFieldType.text,
     disabled: true,
   },
