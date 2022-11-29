@@ -33,6 +33,7 @@ import getUser from "../../hooks/useUser";
 /* Mock data */
 import UserType from "./../../types/UserType";
 import PasswordChangeModal from "../modals/PasswordChangeModal";
+import { useEffect } from "@storybook/addons";
 
 /* Constants */
 
@@ -50,6 +51,8 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
   passwordChange = true,
 }) => {
   const dispatch = useDispatch();
+  const redirect = useNavigate();
+  const currentUser = getUser();
 
   const [formData, setFormData] = useState<any>();
   const [edit, setEdit] = useState<boolean>(false);
@@ -90,9 +93,6 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
     });
   };
 
-  console.log(formData);
-  console.log(user);
-
   /* TODO: here would be nice to have a confirmation modal */
   const handleDelete = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -103,10 +103,6 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
     dispatch(logout(user));
     redirect("/");
   };
-
-  const redirect = useNavigate();
-
-  const currentUser = getUser();
 
   const addProp = [
     {
@@ -145,6 +141,9 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
     });
 
   const fields = userProfileFromFieldsWithProps(userProfileFromFields);
+
+  console.log(formData);
+  console.log(fields);
 
   return user ? (
     <>
