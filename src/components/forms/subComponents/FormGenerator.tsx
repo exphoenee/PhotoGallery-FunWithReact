@@ -102,7 +102,6 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
         ) {
           formState.error[field.name] = "Fields must be the same";
           return true;
-          //formState.error[field2] = "Fields must be the same";
         }
         return false;
       });
