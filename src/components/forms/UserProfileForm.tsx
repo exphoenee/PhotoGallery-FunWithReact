@@ -86,6 +86,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
     e.preventDefault();
     setEdit(false);
     setFormData((prevData: any) => {
+      console.log(prevData);
       return {
         ...prevData,
         value: user,
@@ -127,7 +128,6 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
     },
   ];
 
-  //map through the userProfileFromFields checking the element is an array, is not then if tha element's name is in the addProp then replace is made that recoursevly goes through the array
   const userProfileFromFieldsWithProps = (fields: any) =>
     fields.map((element: any) => {
       if (Array.isArray(element)) {
@@ -141,9 +141,6 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
     });
 
   const fields = userProfileFromFieldsWithProps(userProfileFromFields);
-
-  console.log(formData);
-  console.log(fields);
 
   return user ? (
     <>
