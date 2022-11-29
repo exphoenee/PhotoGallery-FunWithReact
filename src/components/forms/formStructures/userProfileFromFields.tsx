@@ -3,23 +3,25 @@ import { EmailIcon, NameIcon, UserIcon } from "../../icons";
 import formFieldType from "../types/formFieldType";
 import { inputFieldType } from "../../common/InputField";
 
-const userProfileFromFields: formFieldType[] = [
-  {
-    label: "First name",
-    name: "firstname",
-    type: inputFieldType.text,
-    icon: <NameIcon />,
-  },
-  {
-    label: "Last name",
-    name: "lastname",
-    type: inputFieldType.text,
-    icon: <NameIcon />,
-    validation: {
-      required: true,
-      minLength: 3,
+const userProfileFromFields: (formFieldType | formFieldType[])[] = [
+  [
+    {
+      label: "First name",
+      name: "firstName",
+      type: inputFieldType.text,
+      icon: <NameIcon />,
     },
-  },
+    {
+      label: "Last name",
+      name: "lastName",
+      type: inputFieldType.text,
+      icon: <NameIcon />,
+      validation: {
+        required: true,
+        minLength: 3,
+      },
+    },
+  ],
   {
     label: "Username",
     name: "username",
