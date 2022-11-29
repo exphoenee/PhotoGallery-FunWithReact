@@ -18,6 +18,7 @@ export interface FormGeneratorType {
   formFields: (formFieldType | formFieldType[])[];
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   setFormData: (data: any) => void;
+  setSetters?: any;
   withoutSubmit?: boolean;
   submitButtonIcon?: React.ReactNode;
   submitButtonLabel?: string;
@@ -29,6 +30,7 @@ export interface FormGeneratorType {
 const FormGenerator: React.FC<FormGeneratorType> = ({
   handleSubmit,
   setFormData,
+  setSetters,
   formFields,
   withoutSubmit = false,
   submitButtonIcon = <AcceptIcon />,
@@ -105,7 +107,6 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
         }
         return false;
       });
-      console.log(errors);
       if (errors.length > 0) {
         formState.messy = true;
       }
