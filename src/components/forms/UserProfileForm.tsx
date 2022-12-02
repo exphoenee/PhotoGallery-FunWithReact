@@ -87,7 +87,6 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
   ) => {
     e.preventDefault();
     setEdit(false);
-    console.log(setters);
     Object.keys(setters).forEach((field) =>
       setters[field].setValue(user[field as keyof UserType])
     );
@@ -143,29 +142,25 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
 
   return user ? (
     <>
+      <h1 className={styles.title}>
+        {`${user.username}'s profile${
+          user.username === currentUser?.username ? " (you)" : ""
+        }`}
+      </h1>
+      <hr />
       <FormGenerator
         formFields={fields}
         handleSubmit={handleSubmit}
         setFormData={setFormData}
         setSetters={setSetters}
         withoutSubmit
+        className={
+          layout === "card" ? styles.profileInfoCard : styles.profileInfoForm
+        }
         beforeFormFields={
           <>
-            <h1 className={styles.title}>
-              {`${user.username}'s profile${
-                user.username === currentUser?.username ? " (you)" : ""
-              }`}
-            </h1>
-            <hr />
             <div className={styles.profile}>
               <Avatar edit={edit} user={user} />
-              <div
-                className={
-                  layout === "card"
-                    ? styles.profileInfoCard
-                    : styles.profileInfoForm
-                }
-              ></div>
             </div>
           </>
         }
