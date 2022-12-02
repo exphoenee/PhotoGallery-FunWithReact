@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 
 /* components */
 import FormFieldRenderer from "./FormFieldRenderer";
@@ -39,19 +39,23 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
   beforeFormFields,
   afterFormFields,
 }) => {
-  const initialState = formFields.flat().reduce(
-    (acc, field) => {
-      return {
-        ...acc,
-        value: {
-          ...acc.value,
-          [field.name]: field?.value ?? "",
+  const initialState = useMemo(
+    () =>
+      formFields.flat().reduce(
+        (acc, field) => {
+          return {
+            ...acc,
+            value: {
+              ...acc.value,
+              [field.name]: field?.value ?? "",
+            },
+            touched: { ...acc.touched, [field.name as string]: false },
+            error: { ...acc.error, [field.name as string]: "" },
+          };
         },
-        touched: { ...acc.touched, [field.name as string]: false },
-        error: { ...acc.error, [field.name as string]: "" },
-      };
-    },
-    { messy: true, value: {}, touched: {}, error: {} }
+        { messy: true, value: {}, touched: {}, error: {} }
+      ),
+    [...formFields]
   );
 
   const [formState, setFormState] = useState<any>(initialState);
@@ -83,6 +87,8 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
       },
     };
   }, {});
+
+  useEffect(() => setSetters(fieldHandler), []);
 
   const formIsMessy = (formState: any) => {
     const issue = Object.keys(formState.error).findIndex(
