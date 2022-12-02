@@ -6,7 +6,7 @@ import formFieldType from "../types/formFieldType";
 import { inputFieldType } from "../../common/InputField";
 
 const user = getUser();
-
+// TODO: thath would be more elegant the FromGenerator would be able to handle the defaultValues, then this map would not be necessary populating the formFields with the user data
 const userProfileFromFields: (formFieldType | formFieldType[])[] = [
   [
     {
