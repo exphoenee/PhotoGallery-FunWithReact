@@ -19,6 +19,7 @@ export interface FormGeneratorType {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   setFormData: (data: any) => void;
   setSetters?: any;
+  className?: string;
   withoutSubmit?: boolean;
   submitButtonIcon?: React.ReactNode;
   submitButtonLabel?: string;
@@ -32,6 +33,7 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
   setFormData,
   setSetters,
   formFields,
+  className,
   withoutSubmit = false,
   submitButtonIcon = <AcceptIcon />,
   submitButtonLabel = "Send",
@@ -135,7 +137,10 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
   ]);
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form
+      className={className ? className : styles.form}
+      onSubmit={handleSubmit}
+    >
       {beforeFormFields && beforeFormFields}
       <div className={styles.fieldContainer}>
         <FormFieldRenderer
