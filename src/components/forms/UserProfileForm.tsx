@@ -88,13 +88,9 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
     e.preventDefault();
     setEdit(false);
     console.log(setters);
-    // setFormData((prevData: any) => {
-    //   console.log(prevData);
-    //   return {
-    //     ...prevData,
-    //     value: user,
-    //   };
-    // });
+    Object.keys(setters).forEach((field) =>
+      setters[field].setValue(user[field as keyof UserType])
+    );
   };
 
   /* TODO: here would be nice to have a confirmation modal */
