@@ -5,10 +5,11 @@
   justify-content: space-between;
   align-items: flex-start;
   bottom: 0%;
-  left: 0%;
-  transform: translate(0%, 75%);
+  left: 50%;
+  transform: translate(-50%, 75%);
   padding: 0.5rem;
-  width: 100%;
+  width: 80%;
+  margin: auto;
   background-color: #f1a0a4aa;
   z-index: 2;
   border-radius: 0.5rem;
@@ -24,7 +25,7 @@
 .errorContainer:before {
   position: absolute;
   top: 0;
-  left: 30%;
+  left: 50%;
   transform: translate(-50%, -100%);
   z-index: 1;
   content: "";

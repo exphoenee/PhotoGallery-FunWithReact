@@ -1,28 +1,37 @@
 import { EmailIcon, NameIcon, UserIcon } from "../../icons";
 
+import getUser from "../../../hooks/useUser";
+
 import formFieldType from "../types/formFieldType";
 import { inputFieldType } from "../../common/InputField";
 
-const userProfileFromFields: formFieldType[] = [
-  {
-    label: "First name",
-    name: "firstname",
-    type: inputFieldType.text,
-    icon: <NameIcon />,
-  },
-  {
-    label: "Last name",
-    name: "lastname",
-    type: inputFieldType.text,
-    icon: <NameIcon />,
-    validation: {
-      required: true,
-      minLength: 3,
+const user = getUser();
+// TODO: thath would be more elegant the FromGenerator would be able to handle the defaultValues, then this map would not be necessary populating the formFields with the user data
+const userProfileFromFields: (formFieldType | formFieldType[])[] = [
+  [
+    {
+      label: "First name",
+      name: "firstName",
+      value: user?.firstName,
+      type: inputFieldType.text,
+      icon: <NameIcon />,
     },
-  },
+    {
+      label: "Last name",
+      name: "lastName",
+      value: user?.lastName,
+      type: inputFieldType.text,
+      icon: <NameIcon />,
+      validation: {
+        required: true,
+        minLength: 3,
+      },
+    },
+  ],
   {
     label: "Username",
     name: "username",
+    value: user?.username,
     type: inputFieldType.text,
     icon: <UserIcon />,
     validation: {
@@ -33,6 +42,7 @@ const userProfileFromFields: formFieldType[] = [
   {
     label: "Email",
     name: "email",
+    value: user?.email,
     type: inputFieldType.email,
     icon: <EmailIcon />,
     validation: {
@@ -43,6 +53,7 @@ const userProfileFromFields: formFieldType[] = [
   {
     label: "Role",
     name: "role",
+    value: user?.role,
     type: inputFieldType.text,
     disabled: true,
   },

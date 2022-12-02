@@ -33,6 +33,7 @@ import getUser from "../../hooks/useUser";
 /* Mock data */
 import UserType from "./../../types/UserType";
 import PasswordChangeModal from "../modals/PasswordChangeModal";
+import { useEffect } from "@storybook/addons";
 
 /* Constants */
 
@@ -50,8 +51,12 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
   passwordChange = true,
 }) => {
   const dispatch = useDispatch();
+  const redirect = useNavigate();
+  const currentUser = getUser();
 
   const [formData, setFormData] = useState<any>();
+  const [setters, setSetters] = useState<any>();
+
   const [edit, setEdit] = useState<boolean>(false);
   const [confirmIsOpen, setConfirmIsOpen] = useState<boolean>(false);
   const [passwordChangeIsOpen, setPasswordChangeIsOpen] =
@@ -75,17 +80,17 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
     setEdit(false);
   };
 
-  // TODO: discard feature will be solved in FormGenerator
+  // TODO: that would be better to solve the discard functionality by the FormGenerator
   const handleDiscard = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     user: UserType
   ) => {
     e.preventDefault();
-    // setEdit(false);
-    // setUsername(user?.username);
-    // setEmail(user?.email);
-    // setFirstName(user?.firstName);
-    // setLastName(user?.lastName);
+    setEdit(false);
+    console.log(setters);
+    Object.keys(setters).forEach((field) =>
+      setters[field].setValue(user[field as keyof UserType])
+    );
   };
 
   /* TODO: here would be nice to have a confirmation modal */
@@ -98,10 +103,6 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
     dispatch(logout(user));
     redirect("/");
   };
-
-  const redirect = useNavigate();
-
-  const currentUser = getUser();
 
   const addProp = [
     {
@@ -126,12 +127,19 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
     },
   ];
 
-  const fields = userProfileFromFields.map((field) => {
-    return {
-      ...field,
-      ...addProp.find((add) => add.name === field.name),
-    };
-  });
+  const userProfileFromFieldsWithProps = (fields: any) =>
+    fields.map((element: any) => {
+      if (Array.isArray(element)) {
+        return userProfileFromFieldsWithProps(element);
+      } else {
+        return {
+          ...element,
+          ...addProp.find((prop) => prop.name === element.name),
+        };
+      }
+    });
+
+  const fields = userProfileFromFieldsWithProps(userProfileFromFields);
 
   return user ? (
     <>
@@ -139,6 +147,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
         formFields={fields}
         handleSubmit={handleSubmit}
         setFormData={setFormData}
+        setSetters={setSetters}
         withoutSubmit
         beforeFormFields={
           <>

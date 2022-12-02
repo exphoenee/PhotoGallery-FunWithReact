@@ -26,7 +26,6 @@ const Header: React.FC<HeaderProps> = () => {
         </Link>
         <NavBar />
       </header>
-      <div className={styles.spacer}></div>
     </>
   );
 };
