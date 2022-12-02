@@ -80,7 +80,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({
     setEdit(false);
   };
 
-  // TODO: discard feature will be solved in FormGenerator
+  // TODO: that would be better to solve the discard functionality by the FormGenerator
   const handleDiscard = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     user: UserType
