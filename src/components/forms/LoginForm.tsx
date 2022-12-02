@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 /* components */
 import { LoginIcon } from "../icons";
 import loginFormFields from "./formStructures/loginFormFields";
+import Popup from "../common/Popup";
 
 /* action */
 import { login } from "../../features/loginUserSlice";
@@ -21,6 +22,7 @@ interface LoginFormType {
 
 const LoginForm: React.FC<LoginFormType> = ({ closeModal }) => {
   const [formData, setFormData] = useState<any>();
+  const [formError, setFormError] = useState<string | null | undefined>(null);
 
   const dispatch = useDispatch();
   const redirect = useNavigate();
@@ -35,8 +37,8 @@ const LoginForm: React.FC<LoginFormType> = ({ closeModal }) => {
       /* TODO: this checking happends on the backend, I didn't has better idea*/
       const user = users.find(
         (user: any) =>
-          user.username === formData.username &&
-          user.password === formData.password
+          user.username === formData.value.username &&
+          user.password === formData.value.password
       );
 
       if (user) {
@@ -44,20 +46,22 @@ const LoginForm: React.FC<LoginFormType> = ({ closeModal }) => {
         closeModal && closeModal();
         redirect("/gallery");
       } else {
-        // setError("Username or password is incorrect!");
+        setFormError("Username or password is incorrect!");
       }
     }
   };
 
   return (
-    <FormGenerator
-      setFormData={setFormData}
-      formFields={loginFormFields}
-      handleSubmit={handleLogin}
-      submitButtonIcon={<LoginIcon />}
-      submitButtonLabel="Login"
-      //submitButtonStyle={styles.signinButton}
-    />
+    <>
+      <FormGenerator
+        setFormData={setFormData}
+        formFields={loginFormFields}
+        handleSubmit={handleLogin}
+        submitButtonIcon={<LoginIcon />}
+        submitButtonLabel="Login"
+      />
+      <Popup error={formError} setError={setFormError} errorTimeout={5000} />
+    </>
   );
 };
 export default LoginForm;

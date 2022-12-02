@@ -2,6 +2,7 @@
   background-color: #222;
   padding: 1rem 5rem;
   margin-top: 1rem;
+  height: calc(250px - 1rem);
   color: white;
   display: flex;
   flex-direction: row;

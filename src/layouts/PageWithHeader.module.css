@@ -1,10 +1,15 @@
 .page {
-  min-height: 100vh;
+  height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-.main {
-  margin-bottom: auto;
+.scrollable {
   height: 100%;
+  overflow-y: auto;
+}
+
+.content {
+  min-height: calc(100vh - 75px - 314px - 1rem);
 }

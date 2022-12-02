@@ -5,6 +5,7 @@ interface validationRuleType {
   isEmail?: boolean;
   isPhone?: boolean;
   isPassword?: boolean;
+  sameAs?: string;
   isNumeric?: boolean;
   pattern?: RegExp;
   custom?: Function;

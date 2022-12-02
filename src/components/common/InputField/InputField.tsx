@@ -60,8 +60,9 @@ const InputField: React.FC<InputFieldProps> = ({
 }) => {
   const [show, setShow] = useState(false);
 
-  const inputValidation = (
+  const validate = (
     e: React.ChangeEvent<HTMLInputElement>,
+    type: inputFieldType,
     validation?: validationRuleType
   ) => {
     const { value, checked } = e.target;
@@ -83,9 +84,12 @@ const InputField: React.FC<InputFieldProps> = ({
           type === inputFieldType.password ? true : validation.isPassword,
       };
 
-      if (required && value.trim() === "" && checked === false) {
-        return "Required";
-      }
+      if (required)
+        if (type === inputFieldType.checkbox && checked === false) {
+          return "Required";
+        } else if (value.length === 0) {
+          return "Required";
+        }
 
       if (minLength && value.length < minLength) {
         return `Min length is ${minLength}`;
@@ -103,12 +107,11 @@ const InputField: React.FC<InputFieldProps> = ({
         return "Invalid phone number";
       }
 
-      // strong password validation
-
       if (
         isPassword &&
         !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/i.test(value)
       ) {
+        return "";
         return "Password must contain at least 8 characters, one uppercase letter, one lowercase letter and one number";
       }
 
@@ -125,6 +128,15 @@ const InputField: React.FC<InputFieldProps> = ({
       }
     }
     return "";
+  };
+
+  const inputValidation = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    type: inputFieldType,
+    validation?: validationRuleType
+  ) => {
+    const issue = validate(e, type, validation);
+    setError(issue);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -174,7 +186,7 @@ const InputField: React.FC<InputFieldProps> = ({
           }
           value={value}
           onChange={handleChange}
-          onBlur={(e) => setError(inputValidation(e, validation))}
+          onBlur={(e) => inputValidation(e, type, validation)}
           onFocus={() => setError("")}
         />
       </div>

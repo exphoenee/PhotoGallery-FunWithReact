@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 
 /* components */
 import FormFieldRenderer from "./FormFieldRenderer";
@@ -18,6 +18,7 @@ export interface FormGeneratorType {
   formFields: (formFieldType | formFieldType[])[];
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   setFormData: (data: any) => void;
+  setSetters?: any;
   withoutSubmit?: boolean;
   submitButtonIcon?: React.ReactNode;
   submitButtonLabel?: string;
@@ -29,27 +30,32 @@ export interface FormGeneratorType {
 const FormGenerator: React.FC<FormGeneratorType> = ({
   handleSubmit,
   setFormData,
+  setSetters,
   formFields,
-  withoutSubmit = true,
+  withoutSubmit = false,
   submitButtonIcon = <AcceptIcon />,
   submitButtonLabel = "Send",
-  submitButtonStyle = styles.singUpBtn,
+  submitButtonStyle = styles.submitButton,
   beforeFormFields,
   afterFormFields,
 }) => {
-  const initialState = formFields.flat().reduce(
-    (acc, field) => {
-      return {
-        ...acc,
-        value: {
-          ...acc.value,
-          [field.name]: field?.value ?? "",
+  const initialState = useMemo(
+    () =>
+      formFields.flat().reduce(
+        (acc, field) => {
+          return {
+            ...acc,
+            value: {
+              ...acc.value,
+              [field.name]: field?.value ?? "",
+            },
+            touched: { ...acc.touched, [field.name as string]: false },
+            error: { ...acc.error, [field.name as string]: "" },
+          };
         },
-        touched: { ...acc.touched, [field.name as string]: false },
-        error: { ...acc.error, [field.name as string]: "" },
-      };
-    },
-    { messy: true, value: {}, touched: {}, error: {} }
+        { messy: true, value: {}, touched: {}, error: {} }
+      ),
+    [...formFields]
   );
 
   const [formState, setFormState] = useState<any>(initialState);
@@ -82,61 +88,51 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
     };
   }, {});
 
-  const validateForm = (formFields: any, formState: any, fieldHandler: any) => {
-    const validationRules = formFields.reduce((acc: any, field: any) => {
-      return {
-        ...acc,
-        [field.name as string]: {
-          ...field.validation,
-        },
-      };
-    }, {});
+  useEffect(() => setSetters(fieldHandler), []);
 
-    const fieldNames = Object.keys(formState.value).map((input) => input);
+  const formIsMessy = (formState: any) => {
+    const issue = Object.keys(formState.error).findIndex(
+      (field) => formState.error[field] !== ""
+    );
+    formState.messy = issue >= 0;
+  };
 
-    const results = fieldNames.map((field) => {
-      const value = formState.value[field];
-      const validation = validationRules[field];
-      const touched = formState.touched[field];
-      const error = formState.error[field];
+  const checkSameFields = (formFields: any, formState: any) => {
+    const sameFields = formFields
+      .flat()
+      .filter((field: any) => field?.validation?.sameAs);
 
-      console.log({ field, value, validation, touched, error });
-
-      if (!touched) return;
-
-      if (validation.required && value.trim() === "") {
-        fieldHandler[field].setError("Required");
-        return;
+    if (sameFields) {
+      const errors = sameFields.some((field: any) => {
+        if (
+          formState.value[field.name] !==
+          formState.value[field.validation.sameAs]
+        ) {
+          formState.error[field.name] = `Both ${field.name}s must be same.`;
+          return true;
+        }
+        return false;
+      });
+      if (errors.length > 0) {
+        formState.messy = true;
       }
+    }
+  };
 
-      if (validation.minLength && value.length < validation.minLength) {
-        fieldHandler[field].setError(`Min length is ${validation.minLength}`);
-        return;
-      }
-
-      if (validation.maxLength && value.length > validation.maxLength) {
-        fieldHandler[field].setError(`Max length is ${validation.maxLength}`);
-        return;
-      }
-
-      if (validation.isEmail && !value.includes("@")) {
-        fieldHandler[field].setError("Invalid email");
-        return;
-      }
-
-      if (validation.isNumeric && isNaN(Number(value))) {
-        fieldHandler[field].setError("Invalid number");
-        return;
-      }
-
-      fieldHandler[field].setError("");
-    });
+  const getFormState = (formState: object, state: string) => {
+    return Object.keys(formState[state as keyof object]).map(
+      (field) => formState[state as keyof object][field]
+    );
   };
 
   useEffect(() => {
-    //validateForm(formFields, formState, fieldHandler);
+    formIsMessy(formState);
+    checkSameFields(formFields, formState);
     setFormData(formState);
-  }, [...Object.keys(formState.value).map((value) => formState.value[value])]);
+  }, [
+    ...getFormState(formState, "value"),
+    ...getFormState(formState, "error"),
+  ]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -149,7 +145,7 @@ const FormGenerator: React.FC<FormGeneratorType> = ({
         />
       </div>
       {afterFormFields && afterFormFields}
-      {withoutSubmit && (
+      {!withoutSubmit && (
         <Button
           type="submit"
           className={submitButtonStyle}
